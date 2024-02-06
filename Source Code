@@ -1,0 +1,72 @@
+#include <stdio.h>
+
+void printPattern(int rows, int type) {
+    int i, j;
+    switch(type) {
+        case 1: // Left-aligned triangle
+            for (i = 1; i <= rows; i++) {
+                for (j = 1; j <= i; j++) {
+                    printf("*");
+                }
+                printf("\n");
+            }
+            break;
+        case 2: // Right-aligned triangle
+            for (i = 1; i <= rows; i++) {
+                for (j = 1; j <= rows - i; j++) {
+                    printf(" ");
+                }
+                for (j = 1; j <= i; j++) {
+                    printf("*");
+                }
+                printf("\n");
+            }
+            break;
+        case 3: // Inverted right-aligned triangle
+            for (i = 1; i <= rows; i++) {
+                for (j = 1; j < i; j++) {
+                    printf(" ");
+                }
+                for (j = 1; j <= rows - i + 1; j++) {
+                    printf("*");
+                }
+                printf("\n");
+            }
+            break;
+        case 4: // Diamond pattern
+            for (i = 1; i <= rows; i++) {
+                for (j = 1; j <= rows - i; j++) {
+                    printf(" ");
+                }
+                for (j = 1; j <= 2 * i - 1; j++) {
+                    printf("*");
+                }
+                printf("\n");
+            }
+            for (i = rows - 1; i >= 1; i--) {
+                for (j = 1; j <= rows - i; j++) {
+                    printf(" ");
+                }
+                for (j = 1; j <= 2 * i - 1; j++) {
+                    printf("*");
+                }
+                printf("\n");
+            }
+            break;
+        default:
+            printf("Invalid pattern type\n");
+    }
+}
+
+int main() {
+    int rows, patternType;
+
+    printf("Enter the number of rows: ");
+    scanf("%d", &rows);
+    printf("Enter the pattern type (1: Left-aligned triangle, 2: Right-aligned triangle, 3: Inverted right-aligned triangle, 4: Diamond): ");
+    scanf("%d", &patternType);
+
+    printPattern(rows, patternType);
+
+    return 0;
+}
